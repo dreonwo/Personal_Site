@@ -6,7 +6,9 @@ let posTop = topCloud.getBoundingClientRect().x;
 let posBottom = bottomCloud.getBoundingClientRect().x;
 
 let xTop = 0;
+let xTopSpeed = .15;
 let xBottom = 0;
+let xBottomSpeed = .2;
 
 skillRows.forEach((skillRow)=>{
     initialColor = skillRow.style.backgroundColor;
@@ -23,25 +25,21 @@ skillRows.forEach((skillRow)=>{
 });
 
 let moveLeft = () =>{
-    if(xTop <= -400){
-        console.log("Top limit reached")
-        topCloud.getBoundingClientRect().x = posTop;
-        xTop = 0;
-        }
-
+    if(xTop < -400 || xTop > 0){
+        xTopSpeed *= -1;
+    }
+    
     topCloud.style.transform = `translateX(${xTop}px)`;
-    xTop-= .1;
+    xTop += xTopSpeed;
     requestAnimationFrame(moveLeft);
 };
 
 let moveRight = () =>{
-    if(xBottom >= 400){
-        console.log("Bottom limit reached")
-        bottomCloud.getBoundingClientRect().x = posBottom;
-        xBottom = 0;
+    if(xBottom > 400 || xBottom < 0){
+        xBottomSpeed *= -1;
     }
     bottomCloud.style.transform = `translateX(${xBottom}px)`;
-    xBottom += .15;
+    xBottom += xBottomSpeed;
     requestAnimationFrame(moveRight);
 };
 
