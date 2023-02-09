@@ -142,6 +142,11 @@ p{
     flex-direction: column;
 }
 
+.resumeBtn{
+    text-decoration: none;
+    color: white;
+}
+
 @media (max-width: 500px) {
 
     .content{
